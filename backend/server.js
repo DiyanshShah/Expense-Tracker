@@ -21,6 +21,9 @@ app.use(express.json());
 
 app.use('/api/v1/auth', authRoutes)
 
+//Serve uploads folder
+app.use('/uploads', express.static(path.join(__dirname, "uploads")));
+
 
 connectDB()
 
