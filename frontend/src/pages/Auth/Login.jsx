@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import AuthLayout from '../../components/AuthLayout'
 import { Link, useNavigate } from 'react-router-dom'
 import Input from '../../components/Inputs/input';
@@ -35,7 +35,7 @@ const Login = () => {
       <AuthLayout>
         <div className='lg:w-[70dvw] h-3/4 md:h-full flex flex-col justify-center'>
           <h3 className='font-bold text-3xl pt-20'>Welcome Back</h3>
-          <p className='italic text-sm py-4'>You already know what to do please don't expect a user Friendly text like "please enter your details below"</p>
+          <p className='italic text-sm py-4'>You already know what to do please don't expect any help from me</p>
         
           <form onSubmit={handleLogin}>
             <Input 
