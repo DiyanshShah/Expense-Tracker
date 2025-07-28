@@ -5,7 +5,7 @@ export const UserContext = createContext();
 const UserProvider  = ({ children }) => {
     const [user, setUser] = useState(null);
 
-    const updateuser = (userDate) => {
+    const updateUser = (userDate) => {
         setUser(userDate);
     };
 
@@ -18,9 +18,9 @@ const UserProvider  = ({ children }) => {
         <UserContext.Provider
             value={{
                 user, 
-                updateuser,
+                updateUser,
                 clearUser
-            }}
+            }} 
         >
             {children}
         </UserContext.Provider>            
