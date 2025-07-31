@@ -6,25 +6,44 @@ import Home from './pages/Dashboard/Home'
 import Expense from './pages/Dashboard/Expense'
 import Income from './pages/Dashboard/Income'
 import UserProvider from './context/userContext';
-
-
-
+import ProtectedRoute from './components/ProtectedRoute';
 
 const App = () => {
   return (
     <UserProvider>
-    <div>
-      <Router>
-        <Routes>
-          <Route path='/' element={<Root/>} />
-          <Route path='/login' element={<Login/>}/>
-          <Route path='/signup' element={<SignUp/>}/>
-          <Route path='/dashboard' element={<Home/>}/>
-          <Route path='/income' element={<Income/>}/>
-          <Route path='/expense' element={<Expense/>}/>
-        </Routes>
-      </Router>
-    </div>
+      <div>
+        <Router>
+          <Routes>
+            <Route path='/' element={<Root/>} />
+            <Route path='/login' element={<Login/>}/>
+            <Route path='/signup' element={<SignUp/>}/>
+            <Route 
+              path='/dashboard' 
+              element={
+                <ProtectedRoute>
+                  <Home/>
+                </ProtectedRoute>
+              }
+            />
+            <Route 
+              path='/income' 
+              element={
+                <ProtectedRoute>
+                  <Income/>
+                </ProtectedRoute>
+              }
+            />
+            <Route 
+              path='/expense' 
+              element={
+                <ProtectedRoute>
+                  <Expense/>
+                </ProtectedRoute>
+              }
+            />
+          </Routes>
+        </Router>
+      </div>
     </UserProvider>
   )
 }
