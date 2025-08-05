@@ -12,6 +12,7 @@ import { IoMdCard } from 'react-icons/io';
 import { addThousandsSeperator } from '../../utils/helper';
 import ExpenseTransactions from '../../components/Dashboard/ExpenseTransactions';
 import Last30DaysExpenses from '../../components/Dashboard/last30DaysExpenses';
+import RecentIncomeWithChart from '../../components/Dashboard/RecentIncomeWithChart';
 
 const Home = () => {
   useUserAuth();
