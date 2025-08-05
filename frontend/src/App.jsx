@@ -7,6 +7,7 @@ import Expense from './pages/Dashboard/Expense'
 import Income from './pages/Dashboard/Income'
 import UserProvider from './context/userContext';
 import ProtectedRoute from './components/ProtectedRoute';
+import { Toaster } from 'react-hot-toast';
 
 const App = () => {
   return (
@@ -44,6 +45,15 @@ const App = () => {
           </Routes>
         </Router>
       </div>
+
+      <Toaster
+        toastOptions={{
+          className: "",
+          style: {
+            fontSize: "15px",
+          },
+        }}
+      />
     </UserProvider>
   )
 }
