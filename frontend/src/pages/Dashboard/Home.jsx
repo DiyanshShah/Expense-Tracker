@@ -10,7 +10,8 @@ import FinanceOverview from '../../components/Dashboard/FinanceOverview'
 import {LuHandCoins, LuWalletMinimal} from 'react-icons/lu';
 import { IoMdCard } from 'react-icons/io';
 import { addThousandsSeperator } from '../../utils/helper';
-
+import ExpenseTransactions from '../../components/Dashboard/ExpenseTransactions';
+import Last30DaysExpenses from '../../components/Dashboard/last30DaysExpenses';
 
 const Home = () => {
   useUserAuth();
@@ -27,7 +28,7 @@ const Home = () => {
       const response = await axiosInstance.get(
         `${API_PATHS.DASHBOARD.GET_DATA}`
       );
-
+      
       if(response.data) {
         setDashboardData(response.data);  
       }
@@ -78,6 +79,22 @@ const Home = () => {
             totalIncome = {dashboardData?.totalIncome || 0}
             totalExpense = {dashboardData?.totalExpense || 0}
           />
+
+
+          <ExpenseTransactions
+            transactions={dashboardData?.last30DaysExpenses?.transactions || []}
+            onSeeMore = {() => navigate('/expense')}
+          
+          />
+          <Last30DaysExpenses
+            data={dashboardData?.last30DaysExpenses?.transactions || []}
+          />
+
+          <RecentIncomeWithChart
+            data={dashboardData?.last60DaysIncome?.transactions?.slice(0,4) || []}
+            totalIncome={dashboardData?.totalIncome || 0}
+          />
+
         </div>
         
       </div>
