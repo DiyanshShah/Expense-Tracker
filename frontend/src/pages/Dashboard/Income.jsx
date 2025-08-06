@@ -6,6 +6,8 @@ import { API_PATHS } from '../../utils/apiPaths';
 import Modal from '../../components/Modal';
 import AddIncomeForm from '../../components/Income/AddIncomeForm';
 import toast from 'react-hot-toast';
+import IncomeList from '../../components/Income/IncomeList';
+import DeleteAlert from '../../components/DeleteAlert';
 
 const Income = () => {
 
@@ -77,8 +79,17 @@ const Income = () => {
       }
   }
 
-  const deleteIncome = async () => {
-
+  const deleteIncome = async (id) => {
+      try{
+        await axiosInstance.delete(API_PATHS.INCOME.DELETE_INCOME(id));
+        toast.success("Hurray you're one step closer to backruptcy")
+        setOpenDeleteAlert({show:false, data: null});
+        fetchIncomeDetails();
+      }catch(error){
+        console.error("Error deleting income",
+          error.response?.data?.message || error.message
+        );
+      }
   }
 
   const handleDownloadIncomeDetails = async () => {
@@ -101,12 +112,31 @@ const Income = () => {
           </div>
         </div>
 
+
+        <IncomeList
+          transactions={incomeData}
+          onDelete = {(id) => setOpenDeleteAlert({show: true, data: id})}
+          onDownloaded = {handleDownloadIncomeDetails}
+        />
+
         <Modal
         isOpen={openAddIncomeModal}
         onClose={() => setOpenAddIncomeModal(false)}
         title="Add new Income source"
         >
            <AddIncomeForm onAddIncome={handleAddIncome}/> 
+        </Modal>
+
+
+        <Modal
+          isOpen={openDeleteAlert.show}
+          onClose={() => setOpenDeleteAlert({show: false, data: null})}
+          title="Delete Income"
+        >
+          <DeleteAlert
+            content="You sure about this homie? this will infact put this income in the fridge or another universe where you won't find it"
+            onDelete={() => deleteIncome(openDeleteAlert.data)}
+          />
         </Modal>
       </div>
     </DashboardLayout>

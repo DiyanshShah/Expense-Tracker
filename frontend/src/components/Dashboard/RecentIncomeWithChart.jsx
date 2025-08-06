@@ -22,7 +22,7 @@ const RecentIncomeWithChart = ({data, totalIncome}) => {
         return() => {};
     }, [data])
   return (
-    <div className='card w-[512.4px] h-[401.6px]'>
+    <div className='card'>
       <div className="flex items-center justify-between">
         <h5 className='text-lg'>Last 60 Days Income</h5>
       </div>
