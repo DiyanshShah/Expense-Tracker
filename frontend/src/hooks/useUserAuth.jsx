@@ -6,7 +6,7 @@ import axiosInstance from "../utils/axiosInstance";
 
 export const useUserAuth = () => {
     const {user, updateUser, clearUser} = useContext(UserContext);
-    const navigate = useNavigate;
+    const navigate = useNavigate();
 
     useEffect(() => {
         if(user) return;
@@ -17,7 +17,7 @@ export const useUserAuth = () => {
                 const response = await axiosInstance.get(API_PATHS.AUTH.GET_USER_INFO);
                 
                 if(isMounted && response.data){
-                    updateuser(response.data);
+                    updateUser(response.data.user);
                 } 
 
 

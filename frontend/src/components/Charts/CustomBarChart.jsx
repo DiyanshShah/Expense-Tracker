@@ -1,4 +1,4 @@
-import React, { act } from 'react'
+import React from 'react'
 import {
     BarChart,
     Bar,
@@ -6,7 +6,6 @@ import {
     YAxis,
     CartesianGrid,
     Tooltip,
-    Legend,
     Cell,
     ResponsiveContainer,
 } from 'recharts';  

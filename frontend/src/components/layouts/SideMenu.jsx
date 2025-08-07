@@ -56,8 +56,7 @@ const SideMenu = ({activeMenu}) => {
       </button>
     ))}
       </div>
-    }
-
-
+  )
+}
 
 export default SideMenu

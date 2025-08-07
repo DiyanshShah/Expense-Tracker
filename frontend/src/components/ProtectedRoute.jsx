@@ -3,11 +3,7 @@ import { Navigate } from 'react-router-dom';
 import { UserContext } from '../context/userContext';
 
 const ProtectedRoute = ({ children }) => {
-    const { user, loading } = useContext(UserContext);
-    
-    if (loading) {
-        return <div>Loading...</div>;
-    }
+    const { user } = useContext(UserContext);
     
     if (!user) {
         return <Navigate to="/login" />;
