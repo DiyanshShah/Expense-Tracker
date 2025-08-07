@@ -10,8 +10,6 @@ import IncomeList from '../../components/Income/IncomeList';
 import DeleteAlert from '../../components/DeleteAlert';
 
 const Income = () => {
-
-
   const [incomeData, setIncomeData] = useState([])
   const [isLoading, setIsLoading] = useState(null);
   const[openDeleteAlert, setOpenDeleteAlert] = useState({
@@ -51,7 +49,7 @@ const Income = () => {
       }
 
       if(!amount || isNaN(amount) || Number(amount) <=0){
-        toast.error("Dude get in the game, Invalid Account");
+        toast.error("Dude get in the game, Invalid Amount");
         return;
       }
 
@@ -93,7 +91,27 @@ const Income = () => {
   }
 
   const handleDownloadIncomeDetails = async () => {
+    try{
+        const response = await axiosInstance.get(
+          API_PATHS.INCOME.DONWLOAD_INCOME, 
+          {
+            responseType: "blob",
+          }
+        );
 
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const link = document.createElement("a");
+        link.href = url;
+        link.setAttribute("download", "income_details.xlsx");
+        document.body.appendChild(link);
+        link.click();
+        link.parentNode.removeChild(link);
+        window.URL.revokeObjectURL(url);
+
+      }catch(error){
+        console.error("Error downloading income details: ", error);
+        toast.error("Awwwwww the site doesn't want to give you the income details, so sed")
+      }
   }
 
   useEffect(() => {
